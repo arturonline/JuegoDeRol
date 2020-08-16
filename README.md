@@ -10,10 +10,16 @@ Volem programar un joc de rol on es van a crear diversos jugadors. A aquests jug
 
 ## Fases
 
-[x] Fase 1
-[ ] Fase 2
+[X] Fase 1
+
+[X] Fase 2
+
 [ ] Fase 3
+
 [ ] Fase 4
+
 [ ] Fase 5
+
 [ ] Fase 6
+
 [ ] Fase 7
