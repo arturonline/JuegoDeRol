@@ -10,6 +10,7 @@ import java.util.Objects;
  * @version 2.0
  */
 public abstract class Player {
+    static int VIDA = 100;
     protected String name;
     protected int attackPoints;
     protected int defensePoints;
@@ -25,11 +26,11 @@ public abstract class Player {
      * @param defensePoints quantitat de punts de defensa.
      * @param life          quantitat de punts de vida.
      */
-    public Player(String name, int attackPoints, int defensePoints, int life) {
+    public Player(String name, int attackPoints, int defensePoints) {
         this.name = name;
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
-        this.life = life;
+        this.life = VIDA;
         this.teams = new ArrayList<>();
         this.items = new ArrayList<>();
     }
@@ -67,7 +68,8 @@ public abstract class Player {
      */
     public int bonificacioObjectes(ArrayList<Item> items) {
         int attackPointsItems = 0;
-        for (Item i : items) attackPointsItems += i.attackBonus;
+        for (Item i : items)
+            attackPointsItems += i.attackBonus;
         return attackPointsItems;
     }
 
@@ -79,21 +81,36 @@ public abstract class Player {
      */
     public int bonificacioDefensivaObjectes(ArrayList<Item> items) {
         int defensePointsItems = 0;
-        for (Item i : items) defensePointsItems += i.defenseBonus;
+        for (Item i : items)
+            defensePointsItems += i.defenseBonus;
         return defensePointsItems;
     }
+
+    /**
+     * Si estas mort no pots atacar.
+     */
+    public class estarMortExcepcio extends Exception {
+        public estarMortExcepcio(String msg) {
+            super(msg);
+        }
+    }
+
     /**
      * Funció per atacar entre diferents tipus de Players. Si no mor, el personatge
      * atacat retorna el atac.
      *
      * @param p es el personatge que volem atacar.
      */
-    public void atack(Player p) {
+    public void atack(Player p) throws estarMortExcepcio {
         // atac
         p.hit(attackPoints + bonificacioObjectes(items));
 
-        // Si esta viu, p retorna el atac
-        if (p.life > 0) this.hit(p.attackPoints + bonificacioObjectes(p.items));
+        try {
+            if (p.life > 0)
+            this.hit(p.attackPoints + bonificacioObjectes(p.items));
+        } catch (Exception e) {
+            throw new estarMortExcepcio("El jugador esta mort.");
+        }
     }
 
     /**
@@ -114,7 +131,8 @@ public abstract class Player {
         lifeLoss = lifeLoss > 0 ? lifeLoss : 0;
 
         // log
-        System.out.println(name + " és colpejat amb " + attack + " punts i es defén amb " + defense + ". Vides: " + life + " - " + dany + " = " + lifeLoss);
+        System.out.println(name + " és colpejat amb " + attack + " punts i es defén amb " + defense + ". Vides: " + life
+                + " - " + dany + " = " + lifeLoss);
 
         life = lifeLoss;
     }
@@ -133,8 +151,7 @@ public abstract class Player {
         if (o == null || getClass() != o.getClass())
             return false;
         Player player = (Player) o;
-        return attackPoints == player.attackPoints && defensePoints == player.defensePoints
-                && life == player.life && name.equals(player.name);
+        return name.equals(player.name);
     }
 
     @Override
@@ -206,4 +223,37 @@ public abstract class Player {
         }
         return representacio;
     }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAttackPoints() {
+        return attackPoints;
+    }
+
+    public void setAttackPoints(int attackPoints) {
+        this.attackPoints = attackPoints;
+    }
+
+    public int getDefensePoints() {
+        return defensePoints;
+    }
+
+    public void setDefensePoints(int defensePoints) {
+        this.defensePoints = defensePoints;
+    }
+
+    public int getLife() {
+        return life;
+    }
+
+    public void setLife(int life) {
+        this.life = life;
+    }
+
 }

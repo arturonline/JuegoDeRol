@@ -18,10 +18,8 @@ public class Human extends Player {
      * @param defensePoints quantitat de punts de defensa.
      * @param life quantitat de vida.
      */
-    public Human(String name, int attackPoints, int defensePoints, int life){
-        super(name, attackPoints, defensePoints, life);
-        if(this.life > 100) {
-            life = VIDA_MAXIMA_HUMAN;
-        }
+    public Human(String name, int attackPoints, int defensePoints){
+        super(name, attackPoints, defensePoints);
+        
     }
 }

@@ -31,6 +31,10 @@ public class Team {
         p.addTeam(this);
     }
 
+    public int tamany() {
+        return this.players.size();
+    }
+
     /**
      * Metode per a llevar un jugador del equip.
      * @param p el jugador que llevem.

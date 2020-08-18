@@ -15,8 +15,8 @@ public class Warrior extends Human {
      * @param defensePoints quantitat de punts de defensa.
      * @param life quantitat de vida.
      */
-    public Warrior(String name, int attackPoints, int defensePoints, int life) {
-        super(name, attackPoints, defensePoints, life);
+    public Warrior(String name, int attackPoints, int defensePoints) {
+        super(name, attackPoints, defensePoints);
     }
 
     /**

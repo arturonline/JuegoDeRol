@@ -22,6 +22,7 @@ public class Item {
         this.name = name;
         this.attackBonus = attackBonus;
         this.defenseBonus = defenseBonus;
+        this.tePropietari = false;
     }
 
     @Override
@@ -56,5 +57,12 @@ public class Item {
             return false;
         return true;
     }
+
+    @Override
+    public String toString() {
+        return name + ": Attac = " + attackBonus + ", defensa = " + defenseBonus + ", propietari = " + (tePropietari ? "si" : "no");
+    }
+
+
 
 }

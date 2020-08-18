@@ -17,12 +17,12 @@ public class Alien extends Player {
      * @param defensePoints quantitat de punts de defensa.
      * @param life          quantitat de vida.
      */
-    public Alien(String name, int attackPoints, int defensePoints, int life) {
-        super(name, attackPoints, defensePoints, life);
+    public Alien(String name, int attackPoints, int defensePoints) {
+        super(name, attackPoints, defensePoints);
     }
 
     @Override
-    public void atack(Player p) {
+    public void atack(Player p) throws estarMortExcepcio {
         if (this.life > 20) {
             if (this.defensePoints > 3) {
                 defensePoints -= 3;
