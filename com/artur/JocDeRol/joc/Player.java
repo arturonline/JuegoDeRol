@@ -1,5 +1,8 @@
 package com.artur.JocDeRol.joc;
 
+import java.util.ArrayList;
+import java.util.Objects;
+
 /**
  * Clase abstracta per a crear diferents tipus de personatjes.
  * @author artur
@@ -10,6 +13,7 @@ public abstract class Player {
     private int attackPoints;
     private int defensePoints;
     private int life;
+    private ArrayList<Team> teams;
 
     /**
      * Constructor generic
@@ -23,6 +27,7 @@ public abstract class Player {
         this.attackPoints = attackPoints;
         this.defensePoints = defensePoints;
         this.life = life;
+        this.teams = new ArrayList<>();
     }
 
     /**
@@ -81,6 +86,34 @@ public abstract class Player {
     }
 
     /**
+     * Afegim un equip al llistat de equips del jugador i el jugador al llistat de jugadors del equip.
+     * @param t el equip que afegim
+     */
+    public void addTeam(Team t) {
+        if (this.teams.contains(t)) return;
+        this.teams.add(t);
+        t.add(this);
+    }
+
+    /**
+     * Eliminem el equip del llistat, i al jugador del llistat del equip.
+     * @param t
+     */
+    public void removeTeam(Team t) {
+        if(!this.teams.contains(t)) return;
+        this.teams.remove(t);
+        t.remove(this);
+    }
+
+    /**
+     * getter
+     * @return retorna el llistat de equips.
+     */
+    public ArrayList<Team> getTeams() {
+        return this.teams;
+    }
+
+    /**
      * Funció per atacar entre diferents tipus de Players. Si no mor, el personatge atacat retorna el atac.
      * @param p es el personatge que volem atacar.
      */
@@ -114,10 +147,32 @@ public abstract class Player {
     }
 
     /**
+     * Sobreescrivim el metode equals per a poder comprar jugadors. El criteri es tots els parametres.
+     * @param o el jugador amb el qual fem la comparació.
+     * @return true o false, depenen del resultat de la comparació.
+     */
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Player player = (Player) o;
+        return getAttackPoints() == player.getAttackPoints() &&
+                getDefensePoints() == player.getDefensePoints() &&
+                getLife() == player.getLife() &&
+                getName().equals(player.getName());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getName(), getAttackPoints(), getDefensePoints(), getLife());
+    }
+
+    /**
      * Retorna totes les dades del jugador
      */
     @Override
     public String toString() {
-        return name + " PA: " + this.getAttackPoints() + " / " + "PD: " + this.getDefensePoints() + " / " + "PV: " + this.getLife();
+        return name + " PA: " + this.getAttackPoints() + " / " + "PD: " + this.getDefensePoints() + " / " + "PV: " + this.getLife() +
+                " (pertany a " + teams.size() + (teams.size() > 1 ? " equips)" : " equip)");
     }
 }

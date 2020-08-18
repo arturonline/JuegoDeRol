@@ -20,7 +20,10 @@ public class Alien extends Player {
         super(name, attackPoints, defensePoints, life);
     }
     // Caracteristica propia dels aliens, si tenen mes de 20 punts de vida, estan en enrage.
-    private boolean enrage(){ return getLife() >= 20; }
+    private boolean enrage() {
+        return getLife() >= 20;
+    }
+
     /**
      *
      * getter
@@ -54,9 +57,11 @@ public class Alien extends Player {
     @Override
     public String toString() {
         if (enrage()) {
-            return getName() + " PA: " + getAttackPoints()  + "(+3) / " + "PD: " + getDefensePoints() +"(-3) / " + "PV: " + getLife();
+            return getName() + " PA: " + getAttackPoints()  + "(+3) / " + "PD: " + getDefensePoints() +"(-3) / " + "PV: " + getLife()
+                    + " (pertany a " + getTeams().size() + (getTeams().size() > 1 ? " equips)" : " equip)");
         } else {
-            return getName() + " PA: " + getAttackPoints() + " / " + "PD: " + getDefensePoints() +" / " + "PV: " + getLife();
+            return getName() + " PA: " + getAttackPoints() + " / " + "PD: " + getDefensePoints() +" / " + "PV: " + getLife()
+                    + " (pertany a " + getTeams().size() + (getTeams().size() > 1 ? " equips)" : " equip)");
         }
     }
 }
