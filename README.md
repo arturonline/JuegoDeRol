@@ -7,19 +7,3 @@ En aquesta pràctica anem a fer-la durant 3 entregues, de manera que anirem afeg
 ## Explicació
 
 Volem programar un joc de rol on es van a crear diversos jugadors. A aquests jugadors els anomenarem de manera genèrica Player. Al moment de jugar, es pot triar entre 3 tipus diferents de jugadors: humà (Human), guerrer (Warrior) o alienígena (Alien). Cada personatge té unes característiques pròpies, que són: els punts d’atac, els punts de defensa i els punts de vida i el comportament de cada jugador dependrà de la seua raça. El joc consistirà en que els jugadors s’ataquen entre ells.
-
-## Fases
-
-[X] Fase 1
-
-[X] Fase 2
-
-[ ] Fase 3
-
-[ ] Fase 4
-
-[ ] Fase 5
-
-[ ] Fase 6
-
-[ ] Fase 7
