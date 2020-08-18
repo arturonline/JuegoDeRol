@@ -1,5 +1,4 @@
 package com.artur.JocDeRol.joc;
-
 /**
  * Aquesta clase representa un personatge de tipus Warrior
  *
@@ -24,19 +23,11 @@ public class Warrior extends Human {
      * Mètode per a dir que un jugador es golpejat per un altre amb tants punts
      * d'atac. En el cas del warrior, si el atac es menor de 5 punts, no li afecta.
      *
-     * @param attackPoints els punts d'atac amb els quals es produeix el atac.
+     * @param attack els punts d'atac amb els quals es produeix el atac.
      */
-    protected void hit(int attackPoints) {
-        int attack = attackPoints > 5 ? attackPoints - this.getDefensePoints() : 0;
-        int lifeLoss = getLife() - attack;
-
-        // Atac o punts de vida mai podran ser menors de zero
-        attack = attack > 0 ? attack : 0;
-        lifeLoss = lifeLoss > 0 ? lifeLoss : 0;
-
-        System.out.println(getName() + " és colpejat amb " + attackPoints + " punts i es defén amb " + getDefensePoints() + ". Vides: " + getLife() + " - " + attack + " = " + lifeLoss);
-
-        setLife(lifeLoss);
+    protected void hit(int attack) {
+        int atac = attack > 5 ? attack : 0;
+        super.hit(atac);
     }
 
 }
