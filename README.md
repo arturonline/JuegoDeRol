@@ -1,5 +1,11 @@
-# JocDeRol
+# JocDeRol by Artur Badenes
 
-Pràctica de programació
+A demonstration of basic Java OOP in the form of a RPG. 
 
-Aquesta es la fase 6, final.
+The game shows the use of:
+
+- Polymorphysm (hit method)
+- Inheritance (warrior, alien...)
+- Encapsulation 
+- Abstraction
+
